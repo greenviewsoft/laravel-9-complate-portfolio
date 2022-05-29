@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HomeSlide extends Model
+class MultiImage extends Model
 {
     use HasFactory;
 
-
     protected $guarded = [];
-
-
-
 }
