@@ -11,4 +11,12 @@ class Blog extends Model
     protected $guarded = [];
 
     
+Public function Category(){  
+
+
+return $this->belongsTo(BlogCategory::class,'blog_category_id', 'id');
+
+
+
+}
 }
