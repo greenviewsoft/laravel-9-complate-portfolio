@@ -24,14 +24,7 @@ public function AddBlogCategory(){
 
 
 public function StoreBlogCategory(Request $request){
-    $request->validate([
-        'blog_category' => 'required' 
-
-    ],[
-
-        'blog_category.required' => 'Blog Cateogry Name is Required',
-
-    ]);
+   
 
 
         BlogCategory::insert([
