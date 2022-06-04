@@ -66,13 +66,8 @@ Blog ! GreenViewSoft
 
 
                             <div class="pagination-wrap">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#"><i class="far fa-long-arrow-left"></i></a></li>
 
-
-                                    </ul>
-                                </nav>
+        {{ $allblogs->links('vendor.pagination.custom') }}  
                             </div>
                         </div>
                         <div class="col-lg-4">
