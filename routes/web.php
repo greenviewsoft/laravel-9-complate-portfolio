@@ -7,10 +7,24 @@ use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
+use App\Http\Controllers\Home\FooterController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Main\MainController;
 
-Route::get('/', function () {
-    return view('frontend.index');
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+
+
+Route::controller(MainController::class)->group(function () {
+    Route::get('/', 'HomeMain')->name('home.p');
+
+
 });
+
+Route::middleware(['auth'])->group(function () {
+    
+
 
 //admin all route
 Route::controller(AdminController::class)->group(function (){
@@ -23,7 +37,7 @@ Route::post('/update/password', 'UpdatePassword')->name('update.password');
 
 
 });
-
+});
 
 
 //Homeslide  all route
@@ -58,6 +72,7 @@ Route::controller(PortfolioController::class)->group(function (){
     Route::post('/update/portfolio', 'UpdatePortfolio')->name('update.portfolio');
     Route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
     Route::get('/portfolio/details/{id}', 'PortfolioDetails')->name('portfolio.details');
+    Route::get('/portfolio', 'HomePortfolio')->name('home.portfolio');   
     });
 
     
@@ -83,10 +98,39 @@ Route::controller(BlogController::class)->group(function (){
     Route::get('/edit/blog/{id}', 'EditBlog')->name('edit.blog');
     Route::post('/update/blog/', 'UpdateBlog')->name('update.blog');
     Route::get('/delete/blog/{id}', 'DeleteBlog')->name('delete.blog');
+    Route::get('/blog/details/{id}', 'BlogDetails')->name('blog.details');
+    Route::get('/category/blog/{id}', 'CategoryBlog')->name('category.blog');
+    Route::get('/blog', 'HomeBlog')->name('home.blog');
 
-   
+    });
+
+
+
+
+//footer  all route
+Route::controller(FooterController::class)->group(function (){
+    Route::get('/footer/page', 'FooterPage')->name('footer.page');
+    Route::post('/update/footer', 'UpdateFooterPage')->name('update.footer');
+
       
     });
+        
+
+
+// Route::get('contact','App\Http\Controllers\ContactController@ContactPage');
+
+
+//contact  route::
+Route::controller(ContactController::class)->group(function (){
+    Route::get('/contact', 'ContactPage')->name('contact.me');
+    Route::post('/store', 'StoreMessage')->name('store.message');
+    Route::get('/contact/message', 'ContactMessage')->name('contact.message');
+    Route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');  
+
+
+      
+    });
+
 
 
 
